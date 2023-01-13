@@ -143,7 +143,7 @@ pub enum EntryPoints {
     },
     BytesMakeOrChange {
         data_length: Option<usize>,
-    }
+    },
 }
 
 impl EntryPoints {
@@ -193,9 +193,7 @@ impl EntryPoints {
                 let data_len = data_length.unwrap_or_else(|| rng.gen_range(0usize, 1000usize));
                 make_or_change(rng, module_id, str_len, data_len)
             },
-            EntryPoints::BytesMakeOrChange {
-                data_length,
-            } => {
+            EntryPoints::BytesMakeOrChange { data_length } => {
                 let rng = rng.expect("Must provide RNG");
                 let data_len = data_length.unwrap_or_else(|| rng.gen_range(0usize, 1000usize));
                 bytes_make_or_change(rng, module_id, data_len)
@@ -244,9 +242,7 @@ const GEN_ENTRY_POINTS: &[EntryPoints; 12] = &[
         string_length: None,
         data_length: None,
     },
-    EntryPoints::BytesMakeOrChange {
-        data_length: None,
-    },
+    EntryPoints::BytesMakeOrChange { data_length: None },
 ];
 
 pub fn rand_simple_function(rng: &mut StdRng, module_id: ModuleId) -> TransactionPayload {
@@ -347,9 +343,11 @@ fn bytes_make_or_change(
 ) -> TransactionPayload {
     let mut bytes = Vec::<u8>::with_capacity(data_len);
     rng.fill_bytes(&mut bytes);
-    get_payload(module_id, ident_str!("bytes_make_or_change").to_owned(), vec![
-        bcs::to_bytes(&bytes).unwrap(),
-    ])
+    get_payload(
+        module_id,
+        ident_str!("bytes_make_or_change").to_owned(),
+        vec![bcs::to_bytes(&bytes).unwrap()],
+    )
 }
 
 fn get_payload_void(module_id: ModuleId, func: Identifier) -> TransactionPayload {
