@@ -734,26 +734,41 @@ dependencies = [
 
 [[package]]
 name = "aptos-datastream-indexer"
-version = "0.1.0"
+version = "0.0.1"
 dependencies = [
  "anyhow",
+ "aptos-api",
+ "aptos-api-test-context",
+ "aptos-api-types",
+ "aptos-bitvec",
+ "aptos-config",
  "aptos-logger",
- "aptos-protos",
- "aptos-rest-client",
- "base64 0.13.0",
+ "aptos-mempool",
+ "aptos-metrics-core",
+ "aptos-runtimes",
+ "aptos-storage-interface",
+ "aptos-types",
+ "aptos-vm",
+ "async-trait",
+ "bcs 0.1.4 (git+https://github.com/aptos-labs/bcs.git?rev=d31fab9d81748e2594be5cd5cdf845786a30562d)",
  "bigdecimal",
  "chrono",
+ "clap 3.2.17",
  "diesel",
  "diesel_migrations",
+ "field_count",
  "futures",
- "moving-average",
+ "hex",
  "once_cell",
- "prost",
+ "regex",
+ "reqwest",
+ "reqwest-middleware",
+ "reqwest-retry",
  "serde 1.0.149",
  "serde_json",
- "serde_yaml 0.8.26",
+ "sha2 0.9.9",
  "tokio",
- "tonic",
+ "url",
 ]
 
 [[package]]
